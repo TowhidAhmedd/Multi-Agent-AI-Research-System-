@@ -411,9 +411,7 @@ if st.session_state.running and not st.session_state.done:
     # ── Step 1: Search ──
     with st.spinner("🔍  Search Agent is working…"):
         search_agent = build_search_agent()
-        # sr = search_agent.invoke({
-        #     "messages": [("user", f"Find recent, reliable and detailed information about: {topic_val}")]
-        # })
+        
         sr = search_agent.invoke({
             "input": f"Find recent, reliable and detailed information about: {topic_val}"
         })
@@ -425,13 +423,8 @@ if st.session_state.running and not st.session_state.done:
     # ── Step 2: Reader ──
     with st.spinner("📄  Reader Agent is scraping top resources…"):
         reader_agent = build_reader_agent()
-        # rr = reader_agent.invoke({
-        #     "messages": [("user",
-        #         f"Based on the following search results about '{topic_val}', "
-        #         f"pick the most relevant URL and scrape it for deeper content.\n\n"
-        #         f"Search Results:\n{results['search'][:800]}"
-        #     )]
-        # })
+        
+        
         rr = reader_agent.invoke({
             "input": (
                 f"Based on the following search results about '{topic_val}', "
