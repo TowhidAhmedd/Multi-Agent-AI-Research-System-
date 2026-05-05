@@ -411,24 +411,36 @@ if st.session_state.running and not st.session_state.done:
     # ── Step 1: Search ──
     with st.spinner("🔍  Search Agent is working…"):
         search_agent = build_search_agent()
+        # sr = search_agent.invoke({
+        #     "messages": [("user", f"Find recent, reliable and detailed information about: {topic_val}")]
+        # })
         sr = search_agent.invoke({
-            "messages": [("user", f"Find recent, reliable and detailed information about: {topic_val}")]
+            "input": f"Find recent, reliable and detailed information about: {topic_val}"
         })
-        results["search"] = sr["messages"][-1].content
+        # results["search"] = sr["messages"][-1].content
+        results["search"] = sr["output"]
         st.session_state.results = dict(results)
     st.rerun() if False else None   # keep inline for now
 
     # ── Step 2: Reader ──
     with st.spinner("📄  Reader Agent is scraping top resources…"):
         reader_agent = build_reader_agent()
+        # rr = reader_agent.invoke({
+        #     "messages": [("user",
+        #         f"Based on the following search results about '{topic_val}', "
+        #         f"pick the most relevant URL and scrape it for deeper content.\n\n"
+        #         f"Search Results:\n{results['search'][:800]}"
+        #     )]
+        # })
         rr = reader_agent.invoke({
-            "messages": [("user",
+            "input": (
                 f"Based on the following search results about '{topic_val}', "
                 f"pick the most relevant URL and scrape it for deeper content.\n\n"
                 f"Search Results:\n{results['search'][:800]}"
-            )]
+            )
         })
-        results["reader"] = rr["messages"][-1].content
+        # results["reader"] = rr["messages"][-1].content
+        results["reader"] = rr["output"]
         st.session_state.results = dict(results)
 
     # ── Step 3: Writer ──
