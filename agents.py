@@ -17,7 +17,7 @@ llm = ChatGroq(
     temperature=0,
     api_key=os.getenv("GROQ_API_KEY"),
     # max_tokens=1024 
-    max_tokens=400
+    max_tokens=800
 )
 
 # ─────────────────────────────
