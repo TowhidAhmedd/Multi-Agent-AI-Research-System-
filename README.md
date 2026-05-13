@@ -1,131 +1,202 @@
 # Multi-Agent-AI-Research-System-
 
-<div align="center">
 
-# 🔬 ResearchMind
-### *Next-Gen Multi-Agent AI Research Pipeline*
+# ML Research Assistant
 
-[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![LangChain](https://img.shields.io/badge/LangChain-Framework-1C3C3C?style=for-the-badge&logo=chainlink&logoColor=white)](https://langchain.com/)
-[![Groq](https://img.shields.io/badge/Groq-Llama_3.1-orange?style=for-the-badge)](https://groq.com/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.38.0-red.svg)](https://streamlit.io/)
+[![Weaviate](https://img.shields.io/badge/Weaviate-4.6.3-green.svg)](https://weaviate.io/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-<p align="center">
-    <b>ResearchMind</b> is a sophisticated multi-agent system that automates the transition from "curiosity" to "comprehensive report." By orchestrating specialized AI agents, it delivers peer-reviewed-quality research in a matter of seconds.
-</p>
+A Retrieval-Augmented Generation (RAG) based ML Research Assistant that enables semantic search and question-answering over arXiv papers using Weaviate vector database and advanced NLP techniques.
 
-[Explore Features](#-key-features) • [Architecture](#%EF%B8%8F-architecture--pipeline) • [Quick Start](#-getting-started) • [CLI Usage](#4-run-the-application)
+## Features
 
-</div>
+- **Data Ingestion**: Load and process scientific papers from arXiv dataset
+- **Advanced Chunking**: Multiple chunking strategies (fixed-size, sentence-based, semantic)
+- **Vector Embeddings**: Sentence-transformer based embeddings for semantic search
+- **Weaviate Integration**: Cloud-hosted vector database for scalable retrieval
+- **RAG Pipeline**: End-to-end retrieval and generation with LLM support (OpenAI, Groq)
+- **Reranking**: Cross-encoder based reranking for improved retrieval quality
+- **Evaluation Metrics**: Comprehensive RAG evaluation with 5 key metrics
+- **Streamlit UI**: Interactive web interface for research queries
+- **Deployment Ready**: Scripts for AWS EC2 deployment
 
----
+## Architecture
 
-## 🚀 Key Features
+```
+Data Source (arXiv) → Chunking → Embeddings → Weaviate Index → RAG Pipeline → UI
+```
 
-<table>
-  <tr>
-    <td width="50%">
-      <h4>🤖 Multi-Agent Orchestration</h4>
-      <p>Coordinated workflow between four distinct agents: <b>Search, Reader, Writer, and Critic</b>, ensuring a separation of concerns and high-quality output.</p>
-    </td>
-    <td width="50%">
-      <h4>⚡ Extreme Inference Speed</h4>
-      <p>Powered by <b>Groq's Llama-3.1-8b-instant</b> model, achieving sub-second token generation for near-instant research drafting.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h4>🌐 Real-time Web Intelligence</h4>
-      <p>Deep integration with <b>Tavily AI</b> for noise-free, optimized search results specifically curated for LLM consumption.</p>
-    </td>
-    <td width="50%">
-      <h4>🔍 Deep Content Extraction</h4>
-      <p>Automated <b>BeautifulSoup4</b> scraping logic that cleans HTML, removes junk tags (nav/footer), and extracts the core knowledge base.</p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h4>⚖️ Automated Quality Audit</h4>
-      <p>A dedicated <b>Critic Agent</b> that performs rigorous QA, scoring reports and providing actionable feedback to ensure academic-level integrity.</p>
-    </td>
-    <td width="50%">
-      <h4>🎨 Modern UI/UX</h4>
-      <p>A custom-themed <b>Streamlit</b> dashboard featuring real-time pipeline status tracking and one-click Markdown exports.</p>
-    </td>
-  </tr>
-</table>
+### Components
 
----
+- **Data Layer**: `app/data/` - ArXiv paper loading and preprocessing
+- **Ingestion Layer**: `app/ingestion/` - Chunking, embeddings, and Weaviate indexing
+- **RAG Layer**: `app/rag/` - Retrieval, reranking, evaluation, and LLM integration
+- **UI Layer**: `app/ui/` - Streamlit-based web interface
+- **Scripts**: `scripts/` - Index building and maintenance utilities
+- **Deployment**: `deploy/` - AWS EC2 deployment scripts
 
-## 🏗️ Architecture & Pipeline
+## Installation
 
-ResearchMind utilizes a **linear state-managed pipeline** to ensure data integrity across the research lifecycle:
+### Prerequisites
 
-1.  **Search Agent** ➔ Scans the global web via Tavily to identify high-authority sources.
-2.  **Reader Agent** ➔ Evaluates links, selects the primary source, and performs deep-tissue scraping.
-3.  **Writer Agent** ➔ Synthesizes raw data into a structured, concise research report.
-4.  **Critic Agent** ➔ Reviews the draft, provides a 1-10 score, and highlights areas for improvement.
+- Python 3.10+
+- Weaviate Cloud account (for vector database)
+- OpenAI API key (for LLM generation)
+- Groq API key (optional, for alternative LLM)
 
----
+### Setup
 
-## 🛠️ Tech Stack
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd ml-research-assistant
+   ```
 
-<div align="center">
+2. **Create virtual environment**:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
 
-| Component | Technology |
-| :--- | :--- |
-| **Framework** | LangChain / LangChain-Core |
-| **LLM Engine** | Llama 3.1 (8B Instant) via Groq |
-| **Search Engine** | Tavily AI |
-| **Web Interface** | Streamlit + Custom CSS |
-| **Parsing** | BeautifulSoup4 / LXML |
-| **Environment** | Python 3.9+ / Dotenv |
+3. **Install dependencies**:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-</div>
+4. **Configure environment variables**:
+   Create a `.env` file in the project root:
+   ```env
+   WEAVIATE_URL=your-weaviate-cloud-url
+   WEAVIATE_API_KEY=your-weaviate-api-key
+   OPENAI_API_KEY=your-openai-api-key
+   GROQ_API_KEY=your-groq-api-key  # Optional
+   ```
 
----
+## Usage
 
-## 🚦 Getting Started
+### Build the Index
 
-### 1. Clone the Repository
-bash
-git clone https://github.com/TowhidAhmedd/Multi-Agent-AI-Research-System-
-cd research-mind
+First, build the Weaviate index with arXiv papers:
 
-2. Install Dependencies
-Bash
-pip install -r requirements.txt
+```bash
+python scripts/build_index.py
+```
 
-3. Configuration
-Create a .env file in the root directory and add your API keys:
+This will:
+- Load papers from the arXiv dataset
+- Apply chunking strategy (configurable in `app/config.py`)
+- Generate embeddings
+- Index chunks in Weaviate
 
-Ini, TOML
-GROQ_API_KEY=your_groq_api_key_here
-TAVILY_API_KEY=your_tavily_api_key_here
+### Run the Application
 
+Start the Streamlit web interface:
 
+```bash
+streamlit run app/ui/streamlit_app.py
+```
 
-Usage
-Launch the Web Experience
-The Streamlit UI provides a visual tracker for the agent pipeline.
+The app will be available at `http://localhost:8501`
 
-Bash
-streamlit run app.py
-Run the CLI Pipeline
-Perfect for quick, terminal-based research tasks.
+### Features in UI
 
-Bash
-python pipeline.py
-Project Structure
-Plaintext
-├── app.py              # Streamlit frontend with custom CSS & state handling
-├── agents.py           # Logic for Agent initialization & Prompt Templates
-├── pipeline.py         # Sequential execution logic & token management
-├── tools.py            # Tavily Search & BeautifulSoup Scraping tools
-├── requirements.txt    # Project dependencies
-└── .env                # (Local only) API Key storage
+- **Semantic Search**: Query scientific papers with natural language
+- **RAG Evaluation**: View retrieval metrics and performance
+- **Reranking Toggle**: Enable/disable cross-encoder reranking
+- **Chunking Configuration**: Adjust chunking parameters
 
+## Configuration
 
+Key configuration options in `app/config.py`:
+
+- **Dataset**: HuggingFace dataset name and config
+- **Chunking**: Size, overlap, and strategy
+- **Embeddings**: Model selection (via sentence-transformers)
+- **LLM**: Provider selection (OpenAI/Groq)
+
+## Deployment
+
+### AWS EC2 Deployment
+
+Follow the detailed guide in [DEPLOYMENT.md](DEPLOYMENT.md) for deploying to AWS EC2.
+
+**Quick steps**:
+1. Launch Ubuntu EC2 instance
+2. Configure security groups (SSH + port 8501)
+3. Upload project files using SCP
+4. Run setup script: `bash deploy/setup_ec2.sh`
+5. Start application: `bash deploy/start_app.sh`
+
+### Local Deployment
+
+For local deployment with Docker (if configured):
+
+```bash
+# Build and run (assuming Dockerfile exists)
+docker build -t ml-research-assistant .
+docker run -p 8501:8501 ml-research-assistant
+```
+
+## Development
+
+### Project Structure
+
+```
+ml-research-assistant/
+├── app/
+│   ├── config.py              # Configuration settings
+│   ├── data/
+│   │   └── load_arxiv.py      # ArXiv data loading
+│   ├── ingestion/
+│   │   ├── chunking.py        # Document chunking strategies
+│   │   ├── embeddings.py      # Embedding generation
+│   │   └── index_weaviate.py  # Weaviate indexing
+│   ├── rag/
+│   │   ├── pipeline.py        # Main RAG pipeline
+│   │   ├── retriever.py       # Vector retrieval
+│   │   ├── reranker.py        # Reranking logic
+│   │   ├── evaluation.py      # RAG evaluation metrics
+│   │   └── llm_client.py      # LLM integration
+│   └── ui/
+│       └── streamlit_app.py   # Web interface
+├── scripts/
+│   └── build_index.py         # Index building script
+├── deploy/
+│   ├── setup_ec2.sh           # EC2 setup script
+│   ├── start_app.sh           # Application startup
+│   └── copy_to_ec2.ps1        # Windows SCP script
+├── pyproject.toml             # Project metadata
+├── requirements.txt           # Python dependencies
+├── DEPLOYMENT.md              # Deployment guide
+└── README.md                  # This file
+```
+
+### Adding New Features
+
+1. **Data Sources**: Extend `app/data/` for new datasets
+2. **Chunking Strategies**: Add methods in `app/ingestion/chunking.py`
+3. **LLM Providers**: Implement in `app/rag/llm_client.py`
+4. **UI Components**: Modify `app/ui/streamlit_app.py`
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature-name`
+3. Make changes and test thoroughly
+4. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Acknowledgments
+
+- [arXiv](https://arxiv.org/) for the scientific paper dataset
+- [Weaviate](https://weaviate.io/) for vector database
+- [Hugging Face](https://huggingface.co/) for datasets and models
+- [OpenAI](https://openai.com/) and [Groq](https://groq.com/) for LLM APIs
 
 
 
