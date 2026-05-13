@@ -342,7 +342,7 @@ with col_input:
         key="topic_input",
         label_visibility="visible",
     )
-    run_btn = st.button("⚡  Run Research Pipeline", use_container_width=True)
+    run_btn = st.button("Run Research Pipeline", use_container_width=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
     # Example chips
@@ -409,7 +409,7 @@ if st.session_state.running and not st.session_state.done:
     topic_val = st.session_state.topic_input
 
     # ── Step 1: Search ──
-    with st.spinner("🔍  Search Agent is working…"):
+    with st.spinner("Search Agent is working…"):
         search_agent = build_search_agent()
         
         sr = search_agent.invoke({
@@ -421,7 +421,7 @@ if st.session_state.running and not st.session_state.done:
     st.rerun() if False else None   # keep inline for now
 
     # ── Step 2: Reader ──
-    with st.spinner("📄  Reader Agent is scraping top resources…"):
+    with st.spinner("Reader Agent is scraping top resources…"):
         reader_agent = build_reader_agent()
         
         
@@ -437,7 +437,7 @@ if st.session_state.running and not st.session_state.done:
         st.session_state.results = dict(results)
 
     # ── Step 3: Writer ──
-    with st.spinner("✍️  Writer is drafting the report…"):
+    with st.spinner("Writer is drafting the report…"):
         research_combined = (
             f"SEARCH RESULTS:\n{results['search']}\n\n"
             f"DETAILED SCRAPED CONTENT:\n{results['reader']}"
@@ -449,7 +449,7 @@ if st.session_state.running and not st.session_state.done:
         st.session_state.results = dict(results)
 
     # ── Step 4: Critic ──
-    with st.spinner("🧐  Critic is reviewing the report…"):
+    with st.spinner("Critic is reviewing the report…"):
         results["critic"] = critic_chain.invoke({
             "report": results["writer"]
         })
@@ -469,12 +469,12 @@ if r:
 
     # Raw outputs in expanders
     if "search" in r:
-        with st.expander("🔍 Search Results (raw)", expanded=False):
+        with st.expander("Search Results (raw)", expanded=False):
             st.markdown(f'<div class="result-panel"><div class="result-panel-title">Search Agent Output</div>'
                         f'<div class="result-content">{r["search"]}</div></div>', unsafe_allow_html=True)
 
     if "reader" in r:
-        with st.expander("📄 Scraped Content (raw)", expanded=False):
+        with st.expander("Scraped Content (raw)", expanded=False):
             st.markdown(f'<div class="result-panel"><div class="result-panel-title">Reader Agent Output</div>'
                         f'<div class="result-content">{r["reader"]}</div></div>', unsafe_allow_html=True)
 
@@ -482,7 +482,7 @@ if r:
     if "writer" in r:
         st.markdown("""
         <div class="report-panel">
-            <div class="panel-label orange">📝 Final Research Report</div>
+            <div class="panel-label orange"> Final Research Report</div>
         """, unsafe_allow_html=True)
         st.markdown(r["writer"])   # render markdown natively
         st.markdown("</div>", unsafe_allow_html=True)
@@ -499,7 +499,7 @@ if r:
     if "critic" in r:
         st.markdown("""
         <div class="feedback-panel">
-            <div class="panel-label green">🧐 Critic Feedback</div>
+            <div class="panel-label green"> Critic Feedback</div>
         """, unsafe_allow_html=True)
         st.markdown(r["critic"])
         st.markdown("</div>", unsafe_allow_html=True)
