@@ -28,9 +28,9 @@ def build_search_agent():
         tools=[web_search],
         llm=llm,
         agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-        verbose=False,  # 🔥 reduce token/log noise
+        verbose=False,  # reduce token/log noise
         handle_parsing_errors=True,
-        max_iterations=2  # 🔥 IMPORTANT FIX
+        max_iterations=2  # IMPORTANT FIX
     )
 
 # ─────────────────────────────
@@ -43,7 +43,7 @@ def build_reader_agent():
         agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
         verbose=False,
         handle_parsing_errors=True,
-        max_iterations=2  # 🔥 IMPORTANT FIX
+        max_iterations=2  # IMPORTANT FIX
     )
 
 # ─────────────────────────────
@@ -105,7 +105,7 @@ critic_chain = critic_prompt | llm | StrOutputParser()
 #     api_key=os.getenv("GROQ_API_KEY")
 # )
 
-# # 🔥 Search Agent
+# # Search Agent
 # def build_search_agent():
 #     return initialize_agent(
 #         tools=[web_search],
@@ -115,7 +115,7 @@ critic_chain = critic_prompt | llm | StrOutputParser()
 #         handle_parsing_errors=True
 #     )
 
-# # 🔥 Reader Agent
+# # Reader Agent
 # def build_reader_agent():
 #     return initialize_agent(
 #         tools=[scrape_url],
