@@ -1,107 +1,131 @@
 # Multi-Agent-AI-Research-System-
-ResearchMind is a sophisticated, multi-agent pipeline designed to automate deep research. By orchestrating four specialized AI agents, the system transforms a simple topic into a structured, peer-reviewed research report in seconds.
 
-Built with LangChain, powered by Groq (Llama 3.1) for lightning-fast inference, and wrapped in a modern Streamlit interface.
+<div align="center">
 
-🚀 Key Features
-Multi-Agent Orchestration: Uses a specialized pipeline where agents handle Search, Reading, Writing, and Critiquing.
+# 🔬 ResearchMind
+### *Next-Gen Multi-Agent AI Research Pipeline*
 
-Real-time Web Intelligence: Integrated with Tavily AI for high-quality, noise-free web searches.
+[![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![LangChain](https://img.shields.io/badge/LangChain-Framework-1C3C3C?style=for-the-badge&logo=chainlink&logoColor=white)](https://langchain.com/)
+[![Groq](https://img.shields.io/badge/Groq-Llama_3.1-orange?style=for-the-badge)](https://groq.com/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-Deep Content Extraction: Automated scraping using BeautifulSoup4 to parse and clean relevant technical data.
+<p align="center">
+    <b>ResearchMind</b> is a sophisticated multi-agent system that automates the transition from "curiosity" to "comprehensive report." By orchestrating specialized AI agents, it delivers peer-reviewed-quality research in a matter of seconds.
+</p>
 
-Automated Quality Assurance: A "Critic" agent evaluates the report, providing a score and actionable feedback.
+[Explore Features](#-key-features) • [Architecture](#%EF%B8%8F-architecture--pipeline) • [Quick Start](#-getting-started) • [CLI Usage](#4-run-the-application)
 
-Optimized Performance: Leverages Llama-3.1-8b-instant on Groq for sub-second response times.
+</div>
 
-Modern UI: A custom-styled Streamlit dashboard with real-time pipeline tracking and Markdown export.
+---
 
+## 🚀 Key Features
 
-Architecture & Pipeline
-The system follows a linear state-managed pipeline:
+<table>
+  <tr>
+    <td width="50%">
+      <h4>🤖 Multi-Agent Orchestration</h4>
+      <p>Coordinated workflow between four distinct agents: <b>Search, Reader, Writer, and Critic</b>, ensuring a separation of concerns and high-quality output.</p>
+    </td>
+    <td width="50%">
+      <h4>⚡ Extreme Inference Speed</h4>
+      <p>Powered by <b>Groq's Llama-3.1-8b-instant</b> model, achieving sub-second token generation for near-instant research drafting.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h4>🌐 Real-time Web Intelligence</h4>
+      <p>Deep integration with <b>Tavily AI</b> for noise-free, optimized search results specifically curated for LLM consumption.</p>
+    </td>
+    <td width="50%">
+      <h4>🔍 Deep Content Extraction</h4>
+      <p>Automated <b>BeautifulSoup4</b> scraping logic that cleans HTML, removes junk tags (nav/footer), and extracts the core knowledge base.</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h4>⚖️ Automated Quality Audit</h4>
+      <p>A dedicated <b>Critic Agent</b> that performs rigorous QA, scoring reports and providing actionable feedback to ensure academic-level integrity.</p>
+    </td>
+    <td width="50%">
+      <h4>🎨 Modern UI/UX</h4>
+      <p>A custom-themed <b>Streamlit</b> dashboard featuring real-time pipeline status tracking and one-click Markdown exports.</p>
+    </td>
+  </tr>
+</table>
 
-Search Agent: Queries the web and retrieves the top 5 most relevant sources.
+---
 
-Reader Agent: Analyzes search results, selects the most pertinent URL, and scrapes its full content.
+## 🏗️ Architecture & Pipeline
 
-Writer Agent: Synthesizes the search data and scraped content into a structured 3-point report.
+ResearchMind utilizes a **linear state-managed pipeline** to ensure data integrity across the research lifecycle:
 
-Critic Agent: Performs a final audit, scoring the report out of 10 and suggesting improvements.
+1.  **Search Agent** ➔ Scans the global web via Tavily to identify high-authority sources.
+2.  **Reader Agent** ➔ Evaluates links, selects the primary source, and performs deep-tissue scraping.
+3.  **Writer Agent** ➔ Synthesizes raw data into a structured, concise research report.
+4.  **Critic Agent** ➔ Reviews the draft, provides a 1-10 score, and highlights areas for improvement.
 
+---
 
-Tech Stack
-Category          Tools
+## 🛠️ Tech Stack
 
-Orchestration   	LangChain, LangChain-Core
-LLM	              Groq (Llama-3.1-8b-instant)
-Search API	      Tavily AI
-UI/UX            	Streamlit + Custom CSS
-Scraping        	BeautifulSoup4, Requests
-Environment	      Python 3.9+, Dotenv
+<div align="center">
 
+| Component | Technology |
+| :--- | :--- |
+| **Framework** | LangChain / LangChain-Core |
+| **LLM Engine** | Llama 3.1 (8B Instant) via Groq |
+| **Search Engine** | Tavily AI |
+| **Web Interface** | Streamlit + Custom CSS |
+| **Parsing** | BeautifulSoup4 / LXML |
+| **Environment** | Python 3.9+ / Dotenv |
 
+</div>
 
+---
 
-Getting Started
-1. Clone the Repository
-Bash
-git clone https://github.com/yourusername/research-mind.git
-cd research-mind
-2. Install Dependencies
-Bash
-pip install -r requirements.txt
-3. Configure Environment Variables
-Create a .env file in the root directory:
+## 🚦 Getting Started
 
-Code snippet
-GROQ_API_KEY=your_groq_api_key
-TAVILY_API_KEY=your_tavily_api_key
-4. Run the Application
-To launch the Web UI:
-
-Bash
-streamlit run app.py
-To run the CLI Pipeline:
-
-Getting Started
-1. Clone the Repository
-Bash
+### 1. Clone the Repository
+bash
 git clone https://github.com/TowhidAhmedd/Multi-Agent-AI-Research-System-
 cd research-mind
 
-3. Install Dependencies
+2. Install Dependencies
 Bash
 pip install -r requirements.txt
 
-5. Configure Environment Variables
-Create a .env file in the root directory:
+3. Configuration
+Create a .env file in the root directory and add your API keys:
 
-Code snippet
-GROQ_API_KEY=your_groq_api_key
-TAVILY_API_KEY=your_tavily_api_key
+Ini, TOML
+GROQ_API_KEY=your_groq_api_key_here
+TAVILY_API_KEY=your_tavily_api_key_here
 
-4. Run the Application
-To launch the Web UI:
+
+
+Usage
+Launch the Web Experience
+The Streamlit UI provides a visual tracker for the agent pipeline.
 
 Bash
 streamlit run app.py
-To run the CLI Pipeline:
-
-Bash
-python pipeline.py
+Run the CLI Pipeline
+Perfect for quick, terminal-based research tasks.
 
 Bash
 python pipeline.py
 Project Structure
-app.py: The Streamlit frontend featuring custom CSS and state management.
+Plaintext
+├── app.py              # Streamlit frontend with custom CSS & state handling
+├── agents.py           # Logic for Agent initialization & Prompt Templates
+├── pipeline.py         # Sequential execution logic & token management
+├── tools.py            # Tavily Search & BeautifulSoup Scraping tools
+├── requirements.txt    # Project dependencies
+└── .env                # (Local only) API Key storage
 
-agents.py: Configuration for the four AI agents and their respective prompt templates.
 
-pipeline.py: The core logic that handles data flow between agents.
-
-tools.py: Custom LangChain tools for web searching and scraping.
-
-requirements.txt: List of all necessary Python libraries.
 
 
 
