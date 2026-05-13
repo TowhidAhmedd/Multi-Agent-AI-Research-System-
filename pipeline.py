@@ -29,7 +29,7 @@ def run_research_pipeline(topic: str) -> dict:
         "input": f"Find recent, reliable information about: {topic}"
     })
 
-    # 🔥 FIX: limit tokens
+    # FIX: limit tokens
     search_result = str(search_result)
     search_result = safe_trim(search_result, 1500)
 
@@ -55,7 +55,7 @@ def run_research_pipeline(topic: str) -> dict:
         )
     })
 
-    # 🔥 FIX: limit tokens
+    # FIX: limit tokens
     reader_result = str(reader_result)
     reader_result = safe_trim(reader_result, 2000)
 
@@ -75,7 +75,7 @@ def run_research_pipeline(topic: str) -> dict:
     research_combined = safe_trim(
         f"SEARCH:\n{state['search_results']}\n\n"
         f"CONTENT:\n{state['scraped_content']}",
-        2500  # 🔥 IMPORTANT LIMIT
+        2500  # IMPORTANT LIMIT
     )
 
     report = writer_chain.invoke({
